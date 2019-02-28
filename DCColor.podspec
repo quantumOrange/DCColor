@@ -28,9 +28,9 @@ TODO: Add long description of the pod here.
   s.source           = { :git => 'https://github.com/quantumOrange/DCColor.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
-  s.ios.deployment_target = '8.0'
+  s.ios.deployment_target = '9.0'
 
-  s.source_files = 'DCColor/Classes/**/*'
+  s.source_files = 'DCColor/Sources/**/*'
   
   # s.resource_bundles = {
   #   'DCColor' => ['DCColor/Assets/*.png']
