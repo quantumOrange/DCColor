@@ -7,7 +7,6 @@
 //
 
 import XCTest
-//@testable import DCGeometry
 @testable import DCColor
 
 class DCColorTests: XCTestCase {
@@ -22,35 +21,34 @@ class DCColorTests: XCTestCase {
         super.tearDown()
     }
     
-    
     func checkColors(red:Color,yellow:Color,white:Color,black:Color,cyan:Color){
         let tolerance:CGFloat  = 0.00001
-        XCTAssertEqual(red.r, 1.0, accuracy: tolerance, "red r != 1")
-        XCTAssertEqual(red.g, 0.0, accuracy: tolerance, "red g != 0")
-        XCTAssertEqual(red.b, 0.0, accuracy: tolerance, "red b != 0")
-        XCTAssertEqual(red.hue, 0.0, accuracy: tolerance, "red hue != 0")
+        XCTAssertEqual(red.rgb.red, 1.0, accuracy: tolerance, "red r != 1")
+        XCTAssertEqual(red.rgb.green, 0.0, accuracy: tolerance, "red g != 0")
+        XCTAssertEqual(red.rgb.blue, 0.0, accuracy: tolerance, "red b != 0")
+        XCTAssertEqual(red.hsb.hue, 0.0, accuracy: tolerance, "red hue != 0")
         XCTAssertEqual(red.value(forChannel: .hue), 0.0, accuracy: tolerance, "red hue value != 0")
         
-        XCTAssertEqual(cyan.r, 0.0, accuracy: tolerance, "cyan r")
-        XCTAssertEqual(cyan.g, 1.0, accuracy: tolerance, "cyan g")
-        XCTAssertEqual(cyan.b, 1.0, accuracy: tolerance, "cyan b")
+        XCTAssertEqual(cyan.rgb.red, 0.0, accuracy: tolerance, "cyan r")
+        XCTAssertEqual(cyan.rgb.green, 1.0, accuracy: tolerance, "cyan g")
+        XCTAssertEqual(cyan.rgb.blue, 1.0, accuracy: tolerance, "cyan b")
         
-        XCTAssertEqual(yellow.r, 1.0, accuracy: tolerance, "yellow r" )
-        XCTAssertEqual(yellow.g, 1.0, accuracy: tolerance, "yellow g")
-        XCTAssertEqual(yellow.b, 0.0, accuracy: tolerance, "yellow b")
-        XCTAssertEqual(yellow.brightness, 1.0, accuracy: tolerance, "yellow br")
-        XCTAssertEqual(yellow.saturation, 1.0, accuracy: tolerance, "yellow sat" )
+        XCTAssertEqual(yellow.rgb.red, 1.0, accuracy: tolerance, "yellow r" )
+        XCTAssertEqual(yellow.rgb.green, 1.0, accuracy: tolerance, "yellow g")
+        XCTAssertEqual(yellow.rgb.blue, 0.0, accuracy: tolerance, "yellow b")
+        XCTAssertEqual(yellow.hsb.brightness, 1.0, accuracy: tolerance, "yellow br")
+        XCTAssertEqual(yellow.hsb.saturation, 1.0, accuracy: tolerance, "yellow sat" )
         
         
-        XCTAssertEqual(white.r, 1.0, accuracy: tolerance, "white r")
-        XCTAssertEqual(white.g, 1.0, accuracy: tolerance, "white g")
-        XCTAssertEqual(white.b, 1.0, accuracy: tolerance, "white b")
-        XCTAssertEqual(white.brightness, 1.0, accuracy: tolerance, "white bright")
-        XCTAssertEqual(white.saturation, 0.0, accuracy: tolerance, "white sat")
+        XCTAssertEqual(white.rgb.red, 1.0, accuracy: tolerance, "white r")
+        XCTAssertEqual(white.rgb.green, 1.0, accuracy: tolerance, "white g")
+        XCTAssertEqual(white.rgb.blue, 1.0, accuracy: tolerance, "white b")
+        XCTAssertEqual(white.hsb.brightness, 1.0, accuracy: tolerance, "white bright")
+        XCTAssertEqual(white.hsb.saturation, 0.0, accuracy: tolerance, "white sat")
         
-        XCTAssertEqual(black.b, 0.0, accuracy: tolerance, "")
-        XCTAssertEqual(black.brightness, 0.0, accuracy: tolerance, "")
-        XCTAssertEqual(black.saturation, 0.0, accuracy: tolerance, "")
+        XCTAssertEqual(black.rgb.blue, 0.0, accuracy: tolerance, "")
+        XCTAssertEqual(black.hsb.brightness, 0.0, accuracy: tolerance, "")
+        XCTAssertEqual(black.hsb.saturation, 0.0, accuracy: tolerance, "")
         
         XCTAssertEqual(cyan.value(forChannel: .red), 0.0, accuracy: tolerance, "cyan value r")
         XCTAssertEqual(cyan.value(forChannel: .green), 1.0, accuracy: tolerance, "cyan value b")
@@ -63,9 +61,9 @@ class DCColorTests: XCTestCase {
         let g:CGFloat = 0.34
         let newColor = red.colorWith(channel: .green, value: g)
         
-        XCTAssertEqual(newColor.r, 1.0, accuracy: tolerance, "nc r != 1")
-        XCTAssertEqual(newColor.g, g, accuracy: tolerance, "nc g != g")
-        XCTAssertEqual(newColor.b, 0.0, accuracy: tolerance, "nc b != 0")
+        XCTAssertEqual(newColor.rgb.red, 1.0, accuracy: tolerance, "nc r != 1")
+        XCTAssertEqual(newColor.rgb.green, g, accuracy: tolerance, "nc g != g")
+        XCTAssertEqual(newColor.rgb.blue, 0.0, accuracy: tolerance, "nc b != 0")
     }
     
     func testUIColor() {
@@ -88,9 +86,9 @@ class DCColorTests: XCTestCase {
     
     func equalColors(color1:Color, color2:Color,msg:String){
         let tolerance:CGFloat = 0.00001
-        XCTAssertEqual(color1.r, color2.r, accuracy: tolerance, msg + "not equal  r")
-        XCTAssertEqual(color1.g, color2.g, accuracy: tolerance,  msg + "not equal g")
-        XCTAssertEqual(color1.b,color2.b, accuracy: tolerance,  msg + "not equal b")
+        XCTAssertEqual(color1.rgb.red, color2.rgb.red, accuracy: tolerance, msg + "not equal  r")
+        XCTAssertEqual(color1.rgb.green, color2.rgb.green, accuracy: tolerance,  msg + "not equal g")
+        XCTAssertEqual(color1.rgb.blue,color2.rgb.blue, accuracy: tolerance,  msg + "not equal b")
     }
     
     func testDCSwatch() {
@@ -138,25 +136,24 @@ class DCColorTests: XCTestCase {
         
     }
 
-    
     func testHSBColor(){
         let hsb = HSBColor(hue: 0.35, saturation: 0.41, brightness:0.67 , alpha: 1.0)
         
         let accuracy:CGFloat = 0.0001
         
-        XCTAssertEqual(hsb.r, hsb.uiColor.r, accuracy: accuracy)
-        XCTAssertEqual(hsb.g, hsb.uiColor.g, accuracy: accuracy)
-        XCTAssertEqual(hsb.b, hsb.uiColor.b, accuracy: accuracy)
+        XCTAssertEqual(hsb.rgb.red, hsb.uiColor.rgb.red, accuracy: accuracy)
+        XCTAssertEqual(hsb.rgb.green, hsb.uiColor.rgb.red, accuracy: accuracy)
+        XCTAssertEqual(hsb.rgb.blue, hsb.uiColor.rgb.red, accuracy: accuracy)
     }
     
     func testRGBColor(){
-        let rgb = RGBColor(r: 0.35, g: 0.41, b:0.67 , alpha: 1.0)
+        let rgb = RGBColor(red: 0.35, green: 0.41, blue:0.67 , alpha: 1.0)
         
         let accuracy:CGFloat = 0.0001
         let twopi = 2.0 * CGFloat.pi
         
-        XCTAssertEqual(rgb.hsb.hue, rgb.uiColor.hue *  twopi , accuracy: accuracy)
-        XCTAssertEqual(rgb.hsb.saturation, rgb.uiColor.saturation, accuracy: accuracy)
-        XCTAssertEqual(rgb.hsb.brightness, rgb.uiColor.brightness, accuracy: accuracy)
+        XCTAssertEqual(rgb.hsb.hsb.hue, rgb.uiColor.hsb.hue *  twopi , accuracy: accuracy)
+        XCTAssertEqual(rgb.hsb.hsb.saturation, rgb.uiColor.hsb.hsb.saturation, accuracy: accuracy)
+        XCTAssertEqual(rgb.hsb.hsb.brightness, rgb.uiColor.hsb.hsb.brightness, accuracy: accuracy)
     }
 }

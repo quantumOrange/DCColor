@@ -31,7 +31,8 @@ TODO: Add long description of the pod here.
   s.ios.deployment_target = '9.0'
 
   s.source_files = 'DCColor/Sources/**/*'
-  
+  s.dependency 'DCCoreGraphics', '~> 0.1.0'
+
   # s.resource_bundles = {
   #   'DCColor' => ['DCColor/Assets/*.png']
   # }

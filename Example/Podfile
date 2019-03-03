@@ -2,7 +2,8 @@ use_frameworks!
 
 target 'DCColor_Example' do
   pod 'DCColor', :path => '../'
-
+  pod 'DCCoreGraphics', :path => '~/Developer/sharedCode/Modules/DCCoreGraphics'
+  
   target 'DCColor_Tests' do
     inherit! :search_paths
 

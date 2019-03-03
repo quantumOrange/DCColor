@@ -1,5 +1,7 @@
 PODS:
-  - DCColor (0.1.0)
+  - DCColor (0.1.0):
+    - DCCoreGraphics (~> 0.1.0)
+  - DCCoreGraphics (0.1.0)
   - FBSnapshotTestCase (2.1.4):
     - FBSnapshotTestCase/SwiftSupport (= 2.1.4)
   - FBSnapshotTestCase/Core (2.1.4)
@@ -8,6 +10,7 @@ PODS:
 
 DEPENDENCIES:
   - DCColor (from `../`)
+  - DCCoreGraphics (from `~/Developer/sharedCode/Modules/DCCoreGraphics`)
   - FBSnapshotTestCase (~> 2.1.4)
 
 SPEC REPOS:
@@ -17,11 +20,14 @@ SPEC REPOS:
 EXTERNAL SOURCES:
   DCColor:
     :path: "../"
+  DCCoreGraphics:
+    :path: "~/Developer/sharedCode/Modules/DCCoreGraphics"
 
 SPEC CHECKSUMS:
-  DCColor: 2852450331d3b980ceec729f8df743466505937f
+  DCColor: 1e0765fcfd3629291fc1625165309f5e4d4229c8
+  DCCoreGraphics: 85df860cb21ae6e0bc142059c8561e3ecd149698
   FBSnapshotTestCase: 094f9f314decbabe373b87cc339bea235a63e07a
 
-PODFILE CHECKSUM: 2745da74a183b5446a82b6ae8624ef481119dd6c
+PODFILE CHECKSUM: f1502bf9a3758453d18c94815a0ae16e3a314ffe
 
 COCOAPODS: 1.5.3

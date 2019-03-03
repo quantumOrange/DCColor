@@ -1,24 +1,16 @@
 //
-//  ViewController.swift
+//  DCColorViewController.swift
 //  DCColor
 //
-//  Created by quantumOrange on 02/27/2019.
-//  Copyright (c) 2019 quantumOrange. All rights reserved.
+//  Created by David Crooks on 23/03/2017.
+//  Copyright © 2017 David Crooks. All rights reserved.
 //
 
 import UIKit
-import DCColor
 
-class ViewController: UIViewController {
+class DCColorViewController: UIViewController {
     @IBOutlet weak var swatch: DCSwatch!
-    
-    @IBAction func brightness(_ sender: UISlider) {
-        let brightness = CGFloat(sender.value)
-        
-        color = UIColor(hue: 0.3, saturation: 1.0, brightness: brightness, alpha: 1.0)
-        
-        
-    }
+
     
     var color:Color!  {
         didSet {
@@ -26,26 +18,14 @@ class ViewController: UIViewController {
                 sw.color = color
             }
             colorControls.forEach{$0.color = color}
-            //print("brightness = \(color.b)")
         }
     }
-    
-    @IBAction func switchColor(_ sender: Any) {
-        let range:ClosedRange<CGFloat> = 0...1
-        color = UIColor.init(red: CGFloat.random(in: range),
-                             green: CGFloat.random(in: range),
-                             blue: CGFloat.random(in: range), alpha: 1.0)
-    }
-    
-    
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         color = UIColor.magenta
         // Do any additional setup after loading the view.
     }
-    
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -61,9 +41,16 @@ class ViewController: UIViewController {
     
     @IBOutlet var colorControls: [DCColorControl]!
     
-    @IBOutlet weak var mainColorControl: DCColorControl!
     
     
+    /*
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
+    }
+    */
 
 }
-
